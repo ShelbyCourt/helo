@@ -26,7 +26,8 @@ module.exports = {
     register: async (req, res) => {
         const db = req.app.get('db');
         const {username, password} = req.body;
-
+        console.log('Username:' + username);
+        console.log('Password:' + password);
         const existingUser = await db.check_user(username)
 
         if (existingUser[0]){
@@ -36,14 +37,17 @@ module.exports = {
         const salt = bcrypt.genSaltSync(10)
         const hash = bcrypt.hashSync(password, salt)
 
-        const newUser = await db.register_user([username, hash])
+        console.log('hash:' + hash)
+        console.log('pre db')
+
+        const newUser = await db.register_user(username, hash)
+        
+        console.log('post db')
 
         req.session.user = {
             userId: newUser[0].id,
             username: newUser[0].username
-            //try to store/use hash as little as possible, all that is really needed are the user id and the password.
         }
-
         res.status(200).send(req.session.user)
     },
 //    logout

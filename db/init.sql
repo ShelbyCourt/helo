@@ -1,7 +1,7 @@
 create table usersa (
 id serial,
 username varchar(20),
-password varchar(20),
+password text,
 profile_pic text,
 primary key (id)
 );
