@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import { loginUser } from '../../redux/reducer';
+import {connect} from 'react-redux';
 
 
 class Auth extends Component {
     constructor(){
-
         super();
         this.state = {
             username: '',
-            password: '',
+            password: ''
         }
     }
-    
+
     changeHandler = (e) => {
         this.setState({
             [e.target.name]: e.target.value
@@ -21,12 +22,13 @@ class Auth extends Component {
     login = (e) => {
         e.preventDefault();
         const {username, password} = this.state
-        axios.post('/auth/login', {username, password})        
+        axios.post('/auth/login', {username, password})
         .then( res => {
             this.props.loginUser(res.data)
             this.props.history.push('/dashboard')
         })
         .catch(err => {
+            console.log(err);
             alert('Could not log in')
         })
     }
@@ -73,4 +75,8 @@ class Auth extends Component {
     }
 }
 
-export default Auth;
+const mapStateToProps = reduxState => reduxState
+
+const mapDispatchToProps = { loginUser }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Auth)

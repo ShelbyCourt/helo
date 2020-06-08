@@ -19,6 +19,21 @@ p {
 
 input {
   flex-direction: row;
+  padding: 5px;
+}
+
+.sidebar {
+  position: absolute;
+  left: 0;
+  width: 150px;
+  height: 100%;
+  background-color: rgb(255, 122, 189);
+}
+
+.searchbar {
+  padding: 15px;
+  border-style: solid;
+  border-width: 1px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
