@@ -23,7 +23,7 @@ class Nav extends Component {
                             <br/>
                         </Link>
                         <Link to="/">
-                            <button>Logout</button>
+                            <button className="logoutBottom">Logout</button>
                         </Link>    
                     </nav>
             </div>

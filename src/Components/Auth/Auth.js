@@ -48,7 +48,7 @@ class Auth extends Component {
     render () { 
         const {username, password} = this.state
         return (
-            <div>
+            <div className="Auth">
                 <form>
                     <h1>Auth</h1>
                     <p>Username: </p>
