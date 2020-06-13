@@ -9,7 +9,8 @@ class Auth extends Component {
         super();
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            profilePicture: ''
         }
     }
 
@@ -21,8 +22,8 @@ class Auth extends Component {
 
     login = (e) => {
         e.preventDefault();
-        const {username, password} = this.state
-        axios.post('/auth/login', {username, password})
+        const {username, password, profilePicture} = this.state
+        axios.post('/auth/login', {username, password, profilePicture})
         .then( res => {
             this.props.loginUser(res.data)
             this.props.history.push('/dashboard')
@@ -35,8 +36,8 @@ class Auth extends Component {
 
     register = (e) => {
         e.preventDefault();
-        const {username, password} = this.state
-        axios.post('/auth/register', {username, password})
+        const {username, password, profilePicture} = this.state
+        axios.post('/auth/register', {username, password, profilePicture})
         .then( res => {
             this.props.history.push('/dashboard')
         })

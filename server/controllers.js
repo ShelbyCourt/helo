@@ -14,7 +14,8 @@ module.exports = {
             if (authenticated) {
                 req.session.user = {
                     userId: user[0].id,
-                    username: user[0].username
+                    username: user[0].username,
+                    profilePicture: user[0].profile_pic
                 }
                 res.status(200).send(req.session.user)
             } else {
@@ -26,6 +27,7 @@ module.exports = {
     register: async (req, res) => {
         const db = req.app.get('db');
         const {username, password} = req.body;
+        const profilePicture = `https://robohash.org/${username}.png`
         console.log('Username:' + username);
         console.log('Password:' + password);
         const existingUser = await db.check_user(username)
@@ -40,13 +42,14 @@ module.exports = {
         console.log('hash:' + hash)
         console.log('pre db')
 
-        const newUser = await db.register_user(username, hash)
+        const newUser = await db.register_user(username, hash, profilePicture)
         
         console.log('post db')
 
         req.session.user = {
             userId: newUser[0].id,
-            username: newUser[0].username
+            username: newUser[0].username,
+            profilePicture: newUser[0].profile_pic
         }
         res.status(200).send(req.session.user)
     },
