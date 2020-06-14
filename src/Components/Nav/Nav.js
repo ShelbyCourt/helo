@@ -15,7 +15,7 @@ class Nav extends Component {
                 <nav>
                     <h1>Nav</h1>
                         {console.log('props inside Nav: ' + JSON.stringify(this.props))}
-                        <h2>Old Way: {this.props.user.username}</h2>
+                        
                         <h2>New Way: {this.props.username}</h2>
 
                         {/* <img scr = {this.state.profilePicture} alt={username}/> */}
@@ -37,5 +37,12 @@ class Nav extends Component {
     }
 }
 
-const mapStateToProps = reduxState => reduxState;
+// const mapStateToProps = reduxState => reduxState;
+const mapStateToProps = reduxState => {
+    return {
+        username: reduxState.username,
+        profile_pic: reduxState.profile_pic
+    };
+}
+
 export default connect(mapStateToProps)(Nav)

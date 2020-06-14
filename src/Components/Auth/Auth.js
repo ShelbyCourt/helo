@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import { loginUser } from '../../redux/reducer';
+import { updateUser } from '../../redux/reducer';
 import {connect} from 'react-redux';
 
 
@@ -25,7 +25,8 @@ class Auth extends Component {
         const {username, password, profilePicture} = this.state
         axios.post('/auth/login', {username, password, profilePicture})
         .then( res => {
-            this.props.loginUser(res.data)
+            console.log('Axios returned from login res.data: ' + JSON.stringify(res.data));
+            this.props.updateUser(res.data.userId, res.data.username, res.data.profilePicture);
             this.props.history.push('/dashboard')
         })
         .catch(err => {
@@ -39,6 +40,8 @@ class Auth extends Component {
         const {username, password, profilePicture} = this.state
         axios.post('/auth/register', {username, password, profilePicture})
         .then( res => {
+            console.log('Axios returned from register res.data: ' + JSON.stringify(res.data));
+            this.props.updateUser(res.data.userId, res.data.username, res.data.profilePicture);
             this.props.history.push('/dashboard')
         })
         .catch(err => {
@@ -76,8 +79,8 @@ class Auth extends Component {
     }
 }
 
-const mapStateToProps = reduxState => reduxState
+// const mapStateToProps = reduxState => reduxState
 
-const mapDispatchToProps = { loginUser }
+const mapDispatchToProps = { updateUser: updateUser }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Auth)
+export default connect(null, mapDispatchToProps)(Auth)
