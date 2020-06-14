@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
-import profilePicture from '../Auth/Auth';
+// import profilePicture from '../Auth/Auth';
 // import George from 'https://robohash.org/George';
 
 
@@ -14,6 +14,10 @@ class Nav extends Component {
             <div className="sidebar">
                 <nav>
                     <h1>Nav</h1>
+                        {console.log('props inside Nav: ' + JSON.stringify(this.props))}
+                        <h2>Old Way: {this.props.user.username}</h2>
+                        <h2>New Way: {this.props.username}</h2>
+
                         {/* <img scr = {this.state.profilePicture} alt={username}/> */}
                         <br/>
                         <Link to="/dashboard">
