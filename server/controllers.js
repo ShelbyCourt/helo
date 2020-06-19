@@ -30,6 +30,7 @@ module.exports = {
         const profilePicture = `https://robohash.org/${username}.png`
         console.log('Username:' + username);
         console.log('Password:' + password);
+        
         const existingUser = await db.check_user(username)
 
         if (existingUser[0]){
@@ -61,5 +62,14 @@ module.exports = {
         } else {
             res.sendStatus(404)
         }
+    },
+
+    getAllPosts: (req, res) => {
+        const db = req.app.get('db');
+
+        db.get_all_posts()
+        .then(posts => res.status(200).send(posts))
+        .catch(err => res.status(500).send(err));
     }
+    
 }

@@ -23,7 +23,7 @@ class Auth extends Component {
     login = (e) => {
         e.preventDefault();
         const {username, password, profilePicture} = this.state
-        axios.post('/auth/login', {username, password, profilePicture})
+        axios.post('/api/login', {username, password, profilePicture})
         .then( res => {
             console.log('Axios returned from login res.data: ' + JSON.stringify(res.data));
             this.props.updateUser(res.data.userId, res.data.username, res.data.profilePicture);
@@ -38,7 +38,7 @@ class Auth extends Component {
     register = (e) => {
         e.preventDefault();
         const {username, password, profilePicture} = this.state
-        axios.post('/auth/register', {username, password, profilePicture})
+        axios.post('/api/register', {username, password, profilePicture})
         .then( res => {
             console.log('Axios returned from register res.data: ' + JSON.stringify(res.data));
             this.props.updateUser(res.data.userId, res.data.username, res.data.profilePicture);
@@ -54,7 +54,7 @@ class Auth extends Component {
         return (
             <div className="Auth">
                 <form>
-                    <h1>Auth</h1>
+                    <h1>Helo</h1>
                     <p>Username: </p>
                         <input
                             type="text" 

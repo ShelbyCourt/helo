@@ -31,7 +31,7 @@ export function logoutUser () {
 }
 
 export function getUser () {
-    const user = axios.get('/auth/user')
+    const user = axios.get('/api/user')
 
     return {
         type: GET_USER,

@@ -4,7 +4,7 @@ const session = require('express-session');
 const massive = require('massive');
 
 const {SESSION_SECRET, SERVER_PORT, CONNECTION_STRING} = process.env;
-const auth = require('./controllers.js');
+const ctrl = require('./controllers.js');
 
 const app = express();
 
@@ -18,10 +18,16 @@ app.use(
     })
 );
 
-app.post('/auth/login', auth.login)
-app.post('/auth/register', auth.register)
-//app.delete('/auth/logout', auth.logout)
-app.get('/auth/user', auth.getUser)
+app.post('/api/login', ctrl.login)
+app.post('/api/register', ctrl.register)
+//app.delete('/api/logout', ctrl.logout)
+app.get('/api/user', ctrl.getUser)
+
+
+app.get('/api/posts', ctrl.getAllPosts)
+
+// console.log('Connection String IS' + ' '+ CONNECTION_STRING)
+// console.log('Server Port IS' + ' '+ SERVER_PORT)
 
 // Top level middleware
 massive({
@@ -31,6 +37,6 @@ massive({
     }
 }).then( db => {
     app.set('db', db)
-    console.log('Connected to db, ya filthy animal')
+    console.log('Connected to db, my little friend!')
     app.listen( SERVER_PORT, () => console.log(`Black Lives Matter on ${SERVER_PORT}`))
 }).catch( err => console.log(err));
