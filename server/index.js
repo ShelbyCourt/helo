@@ -5,6 +5,7 @@ const massive = require('massive');
 
 const {SESSION_SECRET, SERVER_PORT, CONNECTION_STRING} = process.env;
 const ctrl = require('./controllers.js');
+const postCtrl = require('./postControllers');
 
 const app = express();
 
@@ -24,7 +25,7 @@ app.post('/api/register', ctrl.register)
 app.get('/api/user', ctrl.getUser)
 
 
-app.get('/api/posts', ctrl.getAllPosts)
+app.get('/api/posts', postCtrl.getAllPosts)
 
 // console.log('Connection String IS' + ' '+ CONNECTION_STRING)
 // console.log('Server Port IS' + ' '+ SERVER_PORT)

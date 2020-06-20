@@ -11,6 +11,8 @@ class Post extends Component {
             <div>
                 <Nav/>
                 <h1>Post</h1>
+
+                <button>Delete Post</button>
             </div>
         )
     }
