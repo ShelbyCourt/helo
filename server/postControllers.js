@@ -65,12 +65,20 @@ module.exports = {
         const { userId } = req.query
         const {title, img, content} = req.body;
         
-
         await db.add_new_post([title, img, content, userId]);
         return res.sendStatus(200);
+    },
+
+    updateTitle: async (req, res) =>  {
+        console.log('in updateTitle')
+        db = req.app.get('db');
+        const { postId } = req.query
+        const { title } = req.body
+
+        const updatedPost = await db.update_title(postId, title)
+        return res.status(200).send(updatedPost);
 
     }
-
 
     // getAllPosts: (req, res) => {
     //     const db = req.app.get('db');

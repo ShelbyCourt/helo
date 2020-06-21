@@ -29,6 +29,8 @@ app.get('/api/posts', postCtrl.getAllPosts)
 app.get('/api/onepost', postCtrl.getOnePost)
 app.delete('/api/posts', postCtrl.deletePost)
 app.post('/api/posts', postCtrl.addNewPost)
+app.put('/api/posts', postCtrl.updateTitle)
+
 
 // console.log('Connection String IS' + ' '+ CONNECTION_STRING)
 // console.log('Server Port IS' + ' '+ SERVER_PORT)
