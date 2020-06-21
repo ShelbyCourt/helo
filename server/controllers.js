@@ -54,8 +54,7 @@ module.exports = {
         }
         res.status(200).send(req.session.user)
     },
-//    logout
-//    getUser
+
     getUser: (req, res) => {
         if (req.session.user) {
             res.status(200).send(req.session.user)
@@ -64,12 +63,9 @@ module.exports = {
         }
     },
 
-    getAllPosts: (req, res) => {
-        const db = req.app.get('db');
-
-        db.get_all_posts()
-        .then(posts => res.status(200).send(posts))
-        .catch(err => res.status(500).send(err));
+    logout: (req, res) => {
+        req.session.destroy();
+        return res.sendStatus(200);
     }
     
 }

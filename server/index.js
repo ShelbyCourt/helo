@@ -19,13 +19,16 @@ app.use(
     })
 );
 
-app.post('/api/login', ctrl.login)
-app.post('/api/register', ctrl.register)
-//app.delete('/api/logout', ctrl.logout)
-app.get('/api/user', ctrl.getUser)
+app.post('/auth/login', ctrl.login)
+app.post('/auth/register', ctrl.register)
+app.post('/auth/logout', ctrl.logout)
+app.get('/auth/user', ctrl.getUser)
 
 
 app.get('/api/posts', postCtrl.getAllPosts)
+app.get('/api/onepost', postCtrl.getOnePost)
+app.delete('/api/posts', postCtrl.deletePost)
+app.post('/api/posts', postCtrl.addNewPost)
 
 // console.log('Connection String IS' + ' '+ CONNECTION_STRING)
 // console.log('Server Port IS' + ' '+ SERVER_PORT)
